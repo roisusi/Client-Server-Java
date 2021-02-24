@@ -11,10 +11,12 @@ import java.util.function.DoubleUnaryOperator;
 
 public class Echoer extends Thread{
     private Socket socket;
+    private DataBase db;
 
     public Echoer(Socket socket) {
         //Communicate with the Client
         this.socket = socket;
+        db = new DataBase();
     }
 
     @Override
@@ -28,6 +30,17 @@ public class Echoer extends Thread{
             PrintWriter output = new PrintWriter(socket.getOutputStream(),true);
             while (true) {
                 String echoString = input.readLine();
+
+                //Connection to DataBase
+                if (echoString.equals("connect")){
+                    try {
+                        db.connect();
+                        output.println("Connection Establish Welcome to DataBase Test - " + socket.getPort() );
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
                 if (echoString.equals("exit")) {
                     System.out.println("Client with port: " + socket.getPort() + " has exit");
                     break;
@@ -42,6 +55,8 @@ public class Echoer extends Thread{
 //                } catch (InterruptedException e){
 //                System.out.println("Thread Interrupted");
 //                }
+
+
 
                 output.println("Echo from server: " + echoString);
             }
