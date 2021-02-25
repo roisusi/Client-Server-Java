@@ -24,8 +24,7 @@ public class Echoer extends Thread{
         try {
             System.out.println("Client with port: " + socket.getPort() + " has Entered");
             //Read from the Server Socket
-            BufferedReader input = new BufferedReader(
-                    new InputStreamReader(socket.getInputStream()));
+            BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
             PrintWriter output = new PrintWriter(socket.getOutputStream(),true);
             while (true) {
@@ -55,8 +54,6 @@ public class Echoer extends Thread{
 //                } catch (InterruptedException e){
 //                System.out.println("Thread Interrupted");
 //                }
-
-
 
                 output.println("Echo from server: " + echoString);
             }

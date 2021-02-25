@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        try (Socket socket = new Socket("localhost", 5000)) {
+        try (Socket socket = new Socket("localhost", 20000)) {
             BufferedReader echoes = new BufferedReader(
                     new InputStreamReader(socket.getInputStream()));
 
@@ -23,7 +23,7 @@ public class Main {
             String response;
 
             do {
-                System.out.println("Enter string to be echoed: ");
+                System.out.println("Enter string to be echoed: " + socket.getPort() + " ");
                 echoString = scanner.nextLine();
 
                 stringToEcho.println(echoString);

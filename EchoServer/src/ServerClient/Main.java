@@ -7,7 +7,7 @@ import java.net.Socket;
 public class Main {
 
     public static void main(String[] args) {
-        try (ServerSocket serverSocket = new ServerSocket(5000)) {
+        try (ServerSocket serverSocket = new ServerSocket(20000)) {
             while (true){
 
                 //--New Thread for every connection--//
